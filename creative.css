@@ -323,3 +323,12 @@ ul {
   color: white;
 }
 
+/* BOOTSTRAP IMAGE CAROUSEL */
+.image-container {
+  position:relative;
+}
+.carousel {
+  position:absolute;
+  top:0;
+  left:0;
+}
