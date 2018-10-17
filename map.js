@@ -16,6 +16,7 @@ function initAutocomplete() {
       {types: ['(cities)']}*/);
 
   autocomplete.addListener('place_changed', fillInAddress);
+  
 }
 
 function codeAddress(address) {
@@ -72,8 +73,11 @@ function fillInAddress() {
         else if(response.results[i].price_level === 3){
           price_level3.push(response.results[i]);
         }
-        else{
+        else if(response.results[i].price_level === 4){
           price_level4.push(response.results[i]);
+        }
+        else{
+          
         }
       }
       
@@ -92,6 +96,7 @@ function fillInAddress() {
   }
 
   function findHighestRating(array) {
+  
     var max = 0;
     var maxObject;
     for(var i = 0; i < array.length; i++){
@@ -102,6 +107,30 @@ function fillInAddress() {
     }
     console.log(max);
     console.log(maxObject);
+    if (maxObject.price_level === 1){
+
+      $("#dollar1name").append(maxObject.name);
+      $("#dollar1rating").append(max);
+      $("#dollar-one").append(maxObject.vicinity);
+    }
+    else if (maxObject.price_level ===2){
+      $("#dollar2name").append(maxObject.name);
+      $("#dollar2rating").append(max);
+      $("#dollar-two").append(maxObject.vicinity);
+    }
+    else if (maxObject.price_level ===3){
+      $("#dollar3name").append(maxObject.name);
+      $("#dollar3rating").append(max);
+      $("#dollar-three").append(maxObject.vicinity);
+    }
+    else if (maxObject.price_level ===4) {
+      $("#dollar4name").append(maxObject.name);
+      $("#dollar4rating").append(max);
+      $("#dollar-four").append(maxObject.vicinity);
+    }
+    else{
+
+    }
     return max, maxObject;
     
   }
