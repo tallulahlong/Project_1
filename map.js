@@ -1,7 +1,8 @@
 var placeSearch, autocomplete, geocoder;
 var placesID = "";
 var placesAPI = "AIzaSyADGBWsEdFbuCg0xzSfPVrbm1mihab7ro4";
-var myKeyword = "Japanese";
+// var myKeyword = document.getElementById("category-input");
+
 var myLocation;
 var myfields = "photos,formatted_address,name,rating, opening_hours"
 var price_level1 = [];
@@ -14,10 +15,14 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
       (document.getElementById('autocomplete'))/*,
       {types: ['(cities)']}*/);
-
+  
   autocomplete.addListener('place_changed', fillInAddress);
   
+  
+
 }
+
+
 
 function codeAddress(address) {
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -33,6 +38,7 @@ function codeAddress(address) {
 
 function fillInAddress() {
   var place = autocomplete.getPlace();
+
   console.log(place.place_id);
   console.log(place);
   placesID = place.place_id;
@@ -49,15 +55,20 @@ function fillInAddress() {
   console.log(response.result.geometry.location.lat);
   console.log(response.result.geometry.location.lng);
   myLocation = response.result.geometry.location.lat +","+response.result.geometry.location.lng;
+
   secondRequest(myLocation);
 });
 
   
   function secondRequest(coordinates){
+    var myKeyword = $("#category-input").val().trim();
+    $("#category-input").empty()
+
     $.ajax({
       url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+coordinates+"&rankby=distance&type=restaurant&keyword="+myKeyword+"&fields="+myfields+"&key="+placesAPI,
       method: "GET"
       }).then(function(response) {
+      console.log(myKeyword);
       console.log(coordinates);
       console.log(response);
       console.log(response.results.length);
@@ -85,18 +96,41 @@ function fillInAddress() {
       console.log(price_level2);
       console.log(price_level3);
       console.log(price_level4);
-      console.log(price_level1[0].rating);
-      findHighestRating(price_level1);
-      findHighestRating(price_level2);
-      findHighestRating(price_level3);
-      findHighestRating(price_level4);
+      if (price_level1.length > 0){
+        // $(".food-result1").empty();
+        findHighestRating(price_level1);
+      }
+      else {
+
+      }
+      if (price_level2.length > 0){
+        // $(".food-result2").empty();
+        findHighestRating(price_level2);
+      }
+      else {
+
+      }
+      if (price_level3.length > 0){
+        // $(".food-result3").empty();
+        findHighestRating(price_level3);
+      }
+      else {
+
+      }
+      if (price_level4.length > 0){
+        // $(".food-result4").empty();
+        findHighestRating(price_level4);
+      }
+      else {
+
+      }
 
       
     });
   }
 
   function findHighestRating(array) {
-  
+
     var max = 0;
     var maxObject;
     for(var i = 0; i < array.length; i++){
@@ -136,6 +170,29 @@ function fillInAddress() {
   }
 
 }
+
+// function searchagain() {
+  //   price_level1.empty();
+  //   price_level2.empty();
+  //   price_level3.empty();
+  //   price_level4.empty();
+  //   $("#dollar1name").empty();
+  //   $("#dollar1rating").empty();
+  //   $("#dollar-one").empty();
+  
+  //   $("#dollar2name").empty();
+  //   $("#dollar2rating").empty();
+  //   $("#dollar-two").empty();
+    
+  //   $("#dollar3name").empty();
+  //   $("#dollar3rating").empty();
+  //   $("#dollar-three").empty();
+  
+  //   $("#dollar4name").empty();
+  //   $("#dollar4rating").empty();
+  //   $("#dollar-four").empty();
+  
+  // }
 
 
 
