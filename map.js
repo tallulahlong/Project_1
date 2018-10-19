@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* Google Places API & Functionality */
-
-=======
->>>>>>> 0eedaf11ae63bbe153d2efcd7648cb3ab927badd
 var placeSearch, autocomplete, geocoder;
 var placesID = "";
 var placesAPI = "AIzaSyADGBWsEdFbuCg0xzSfPVrbm1mihab7ro4";
@@ -113,7 +109,6 @@ function fillInAddress() {
 
 }
 
-<<<<<<< HEAD
 /* Unsplash API & Functionality */
 
 var unsplashAPI = "https://api.unsplash.com/photos/random/?query=food&count=10&client_id=c6818cda8c5de970833aeb6395c740b8d73b0b1c5fb0b9efb8555cac93895c94"
@@ -126,20 +121,10 @@ $.ajax({
   url: unsplashAPI,
   method: "GET"
   }).then(function(response) {
-  // console.log(response);
+  console.log(response);
   for (let i = 0; i < response.length; i++) {
     var element = UNSPLASH_URL + response[i].id;
     image_array.push(element);
   }
 });
-=======
-
-
-
-
- 
-
-
-
->>>>>>> 0eedaf11ae63bbe153d2efcd7648cb3ab927badd
 
