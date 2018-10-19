@@ -22,6 +22,7 @@ a {
   color: #F05F40;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  
 }
 
 a:hover {
@@ -337,3 +338,6 @@ ul {
   color: white;
 }
 
+#new {
+  color : white;
+}

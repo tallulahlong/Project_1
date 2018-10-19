@@ -58,3 +58,12 @@ var config = {
       }, function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
       });
+
+
+      $("#new-search").on("click", function() {
+      location.reload();
+      // $(this).scrollTop(0); 
+      // searchagain();
+      });
+
+      

@@ -1,3 +1,5 @@
+
+
 var placeSearch, autocomplete, geocoder;
 var placesID = "";
 var placesAPI = "AIzaSyADGBWsEdFbuCg0xzSfPVrbm1mihab7ro4";
@@ -11,6 +13,7 @@ var price_level3 = [];
 var price_level4 = [];
 
 function initAutocomplete() {
+  
   geocoder = new google.maps.Geocoder();
   autocomplete = new google.maps.places.Autocomplete(
       (document.getElementById('autocomplete'))/*,
@@ -44,6 +47,9 @@ function fillInAddress() {
   placesID = place.place_id;
   console.log(placesID);
   //   codeAddress(document.getElementById('autocomplete').value);
+  $("#search-restaurant").on("click", function(event) {
+  event.preventDefault();
+  
   var test4URL = "https://maps.googleapis.com/maps/api/place/details/json?placeid="+placesID+"&key="+placesAPI;
  
 
@@ -57,6 +63,7 @@ function fillInAddress() {
   myLocation = response.result.geometry.location.lat +","+response.result.geometry.location.lng;
 
   secondRequest(myLocation);
+  });
 });
 
   
@@ -172,27 +179,28 @@ function fillInAddress() {
 }
 
 // function searchagain() {
-  //   price_level1.empty();
-  //   price_level2.empty();
-  //   price_level3.empty();
-  //   price_level4.empty();
-  //   $("#dollar1name").empty();
-  //   $("#dollar1rating").empty();
-  //   $("#dollar-one").empty();
+      //   price_level1.empty();
+      //   price_level2.empty();
+      //   price_level3.empty();
+      //   price_level4.empty();
+      //   $("#dollar1name").empty();
+      //   $("#dollar1rating").empty();
+      //   $("#dollar-one").empty();
   
-  //   $("#dollar2name").empty();
-  //   $("#dollar2rating").empty();
-  //   $("#dollar-two").empty();
+      //   $("#dollar2name").empty();
+      //   $("#dollar2rating").empty();
+      //   $("#dollar-two").empty();
     
-  //   $("#dollar3name").empty();
-  //   $("#dollar3rating").empty();
-  //   $("#dollar-three").empty();
+      //   $("#dollar3name").empty();
+      //   $("#dollar3rating").empty();
+      //   $("#dollar-three").empty();
   
-  //   $("#dollar4name").empty();
-  //   $("#dollar4rating").empty();
-  //   $("#dollar-four").empty();
+      //   $("#dollar4name").empty();
+      //   $("#dollar4rating").empty();
+      //   $("#dollar-four").empty();
   
-  // }
+      //   }
+
 
 
 
