@@ -202,7 +202,26 @@ function fillInAddress() {
       //   }
 
 
+/* Unsplash API & Functionality */
 
+var unsplashAPI = "https://api.unsplash.com/photos/random/?query=food&count=10&client_id=c6818cda8c5de970833aeb6395c740b8d73b0b1c5fb0b9efb8555cac93895c94"
+
+//set up base url for unsplash image
+const UNSPLASH_URL = "https://unsplash.com/photos/";
+var image_array = [];
+
+$.ajax({
+  url: unsplashAPI,
+  method: "GET"
+  }).then(function(response) {
+  console.log(response);
+  for (let i = 0; i < response.length; i++) {
+    var element = UNSPLASH_URL + response[i].id;
+    image_array.push(element);
+  }
+
+  
+});
 
 
 
